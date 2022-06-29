@@ -1,0 +1,14 @@
+go.property("go", 0)
+go.property("edit_small", false)
+function init(self)
+	local tile_url = "/go"..(self.go > 0 and self.go or "").."#tilemap_"..(self.edit_small and "small" or "large")
+	local bx, by, bw, bh = tilemap.get_bounds(tile_url)
+	local x_max = bx + bw - 1
+	local y_max = by + bh - 1
+	for x = bx, x_max do
+		for y = by, y_max do
+			tilemap.set_tile(tile_url, "layer1", x, y, 0)
+		end
+	end
+end
+
